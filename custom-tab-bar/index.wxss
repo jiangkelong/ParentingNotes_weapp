@@ -1,0 +1,30 @@
+/* pages/custom-tab-bar/index.wxss */
+@import "../styles/colorui/main.wxss";
+@import "../styles/colorui/icon.wxss";
+
+.bg-white {
+  background-color: #ffffff;
+  color: #666666;
+}
+
+.bg-orange.light {
+  color: #f37b1d;
+  background-color: #fde6d2;
+}
+
+.bg-green {
+  background-color: #39b54a;
+  color: #ffffff;
+}
+
+.text-green {
+  color: #39b54a;
+}
+
+.text-gray {
+  color: #aaaaaa;
+}
+
+.shadow[class*="-green"] {
+  box-shadow: 6rpx 6rpx 8rpx rgba(48, 156, 63, 0.2);
+}

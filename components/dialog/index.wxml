@@ -1,0 +1,19 @@
+<view class="cu-modal {{show?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">{{ title }}</view>
+			<view wx:if="{{showCloseIcon}}" class="action" bindtap="onClose">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view style="text-align:left;">
+			<slot wx:if="{{ useSlot }}" />
+		</view>
+		<view class="cu-bar bg-white justify-end">
+			<view class="action">
+				<button wx:if="{{ showCancelButton }}" class="cu-btn line-green text-green" bindtap="onCancel">{{ cancelButtonText }}</button>
+				<button wx:if="{{ showConfirmButton }}" class="cu-btn bg-green margin-left" bindtap="onConfirm">{{ confirmButtonText }}</button>
+			</view>
+		</view>
+	</view>
+</view>

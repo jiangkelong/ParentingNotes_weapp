@@ -1,0 +1,40 @@
+<view class="note">
+	<view class="note-item">
+		<view class="cu-bar bg-white">
+			<view class='action'>
+				<text class='cuIcon-time text-blue '></text> 时间
+			</view>
+		</view>
+		<view class="cus-field">
+			<date-time-picker date="{{date}}" bind:onPickerChange="onPickerChange">
+			</date-time-picker>
+		</view>
+	</view>
+	<view class="note-item">
+		<view class="cu-bar bg-white">
+			<view class='action'>
+				<text class='cuIcon-tag text-orange '></text> 尿布状态
+			</view>
+		</view>
+		<view class="cus-field">
+			<picker bindchange="bindPickerChange" value="{{index}}" range="{{states}}">
+				<view>
+					{{states[index]}}
+				</view>
+			</picker>
+		</view>
+	</view>
+	<view class="note-item">
+		<view class="cu-bar bg-white">
+			<view class='action'>
+				<text class='cuIcon-comment text-green '></text> 备注
+			</view>
+		</view>
+		<view class="cus-field">
+			<textarea maxlength="50" placeholder="最多50字"></textarea>
+		</view>
+	</view>
+	<view class="cu-bar btn-group sub-btn">
+		<button class="cu-btn bg-green shadow-blur lg">确 认</button>
+	</view>
+</view>

@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index/index",
+    "pages/center/index/index",
+    "pages/category/index",
+    "pages/start/start/start",
+    "pages/start/welcome/welcome",
+    "pages/note/muru/muru",
+    "pages/note/naiping/naiping",
+    "pages/note/niaoku/niaoku",
+    "pages/note/shuijiao/shuijiao",
+    "pages/note/huwai/huwai",
+    "pages/note/wanshua/wanshua",
+    "pages/note/tizhong/tizhong",
+    "pages/note/shengao/shengao",
+    "pages/note/yachi/yachi",
+    "pages/note/lichengbei/lichengbei",
+    "pages/note/biji/biji"
+  ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index/index",
+        "text": "今日"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/center/index/index",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#39b54a",
+    "navigationBarTitleText": "育儿笔记",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "dialog": "components/dialog/index",
+    "date-time-picker":"components/date-time-picker/index"
+  },
+  "sitemapLocation": "sitemap.json"
+}

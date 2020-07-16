@@ -1,0 +1,278 @@
+@import "styles/colorui/main.wxss";
+@import "styles/colorui/icon.wxss";
+@import "styles/iconfont.wxss";
+
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.scrollPage {
+  height: 100vh;
+}
+
+.fullPage {
+  height: 100%;
+}
+
+/* 底部占位 */
+.place-holder {
+  margin-bottom: 140rpx;
+  min-height: 1px;
+}
+
+/* 导航菜单 */
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 0px 20rpx 0px; */
+  justify-content: space-between;
+  /* margin-top:20rpx; */
+}
+
+.nav-list:after {
+  content: "";
+  flex: auto;
+}
+
+.nav-li {
+  padding: 30rpx;
+  border-radius: 12rpx;
+  width: 30%;
+  margin: 30rpx 1.5% 10rpx;
+  background-image: url(https://image.weilanwl.com/color2.0/cardBg.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-li::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: -10%;
+  border-radius: 10rpx;
+  opacity: 0.2;
+  transform: scale(0.9, 0.9);
+}
+
+.nav-title {
+  font-size: 30rpx;
+  font-weight: 300;
+}
+
+.nav-title::first-letter {
+  font-size: 40rpx;
+  margin-right: 4rpx;
+}
+
+.nav-name {
+  font-size: 28rpx;
+  text-transform: Capitalize;
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.nav-name::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100rpx;
+  height: 1px;
+  background: #fff;
+  bottom: 0;
+  right: 40rpx;
+  opacity: 0.3;
+}
+
+.nav-name::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40rpx;
+  height: 6rpx;
+  background: #fff;
+  bottom: 0;
+  right: 0;
+  opacity: 0.5;
+}
+
+.nav-name::first-letter {
+  font-weight: bold;
+  font-size: 36rpx;
+  margin-right: 1px;
+}
+
+.nav-li text,
+.nav-li image {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  font-size: 52rpx;
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+/* 表单 */
+.cus-field {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 16px;
+  padding: var(--cell-vertical-padding, 10px) var(--cell-horizontal-padding, 16px);
+  font-size: 14px;
+  font-size: var(--cell-font-size, 14px);
+  line-height: 24px;
+  line-height: var(--cell-line-height, 24px);
+  color: #323233;
+  color: var(--cell-text-color, #323233);
+  background-color: #fff;
+  background-color: var(--cell-background-color, #fff);
+}
+
+/* .cus-field+.cus-field {
+  border-top: 1rpx solid #eee;
+} */
+
+.cus-field .label {
+  max-width: 70px;
+  min-width: 70px;
+  -webkit-flex: 1;
+  flex: 1;
+  padding-right: 5px;
+}
+
+.cus-field .value {
+  /* min-width: 150px; */
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.cus-field .picker {
+  width: 100%;
+  text-align: left;
+  min-width: 150px;
+  min-height: 20px;
+}
+
+.cus-field .picker::after {
+  font-family: "cuIcon";
+  display: block;
+  content: "\e6a3";
+  position: absolute;
+  font-size: 34rpx;
+  color: var(--grey);
+  line-height: 100rpx;
+  width: 60rpx;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: -5rpx;
+  margin: auto;
+}
+
+.cus-field .cus-form-group {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: space-between;
+}
+
+.cus-field .cus-form-group .unit {
+  color: var(--darkGray);
+}
+
+.cus-field textarea {
+  height: 100px;
+}
+
+/* 记录页 */
+.note-item+.note-item {
+  border-top: 1rpx solid #eee;
+}
+
+.note .sub-btn {
+  margin-top: 10px;
+}
+/* 时间轴 */
+.cu-timeline .title{
+  font-size: 34rpx;
+}
+.cu-timeline .summary{
+  margin-top: 5px;
+}
+/* 时间轴小尾巴 */
+.cu-timeline .bubble::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 5px;
+  width: 14px;
+  height: 12px;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-width: 10px;
+  border-bottom-color: currentColor;
+  border-radius: 0 0 0 32px;
+}
+
+.bubble[class*="-cyan"]::before {
+  color: var(--cyan);
+}
+
+.bubble[class*="-blue"]::before {
+  color: var(--blue);
+}
+
+.bubble[class*="-purple"]::before {
+  color: var(--purple);
+}
+
+.bubble[class*="-mauve"]::before {
+  color: var(--mauve);
+}
+
+.bubble[class*="-brown"]::before {
+  color: var(--brown);
+}
+
+.bubble[class*="-pink"]::before {
+  color: var(--pink);
+}
+
+.bubble[class*="-olive"]::before {
+  color: var(--olive);
+}
+
+.bubble[class*="-green"]::before {
+  color: var(--green);
+}
+
+.bubble[class*="-grey"]::before {
+  color: var(--grey);
+}
+
+.bubble[class*="-red"]::before {
+  color: var(--red);
+}
+
+.bubble[class*="-orange"]::before {
+  color: var(--orange);
+}
