@@ -1,7 +1,45 @@
 <view class="cu-bar tabbar bg-white">
-	<view wx:for="{{list}}" wx:key="index" data-path="{{item.url}}"  bindtap="switchTab" data-index="{{index}}" class="action text-{{selected === index?'green':'gray'}} {{item.button?'add-action':''}}">
-		<button wx:if="{{item.button}}" class="cu-btn cuIcon-{{item.icon}} bg-green shadow"></button>
-		<view wx:else class="cuIcon-{{item.icon}}"></view>
-    {{item.text}}
+	<view wx:for="{{list}}" wx:key="index" data-path="{{item.url}}" bindtap="{{item.tabBar_page?'switchTab':'chooseBaby'}}" data-index="{{index}}" class="action text-{{selected === index?'green':'gray'}} {{!item.tabBar_page?'add-action':''}}">
+		<!-- <button wx:if="{{!item.tabBar_page}}" class="cu-btn cuIcon-{{item.icon}} bg-green shadow"></button> -->
+		<block wx:if="{{!item.tabBar_page}}">
+			<image src="../images/baby-avatar.png" class="baby-avatar" binderror="loadError"></image>
+			{{default_baby.name}}
+		</block>
+		<block wx:else>
+			<view class="cuIcon-{{item.icon}}"></view>
+			{{item.text}}
+		</block>
+	</view>
+</view>
+<view class="cu-modal bottom-modal choose-modal {{show?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white">
+			<block wx:if="{{baby_items.length>0}}">
+				<view class="action text-blue " bindtap="hideModal">取消</view>
+				<view class="action">选择宝宝</view>
+				<view class="action text-green" bindtap="chooseOk">确定</view>
+			</block>
+			<block wx:else>
+				<view class="action"></view>
+				<view class="action">请添加宝宝</view>
+				<view class="action text-blue" bindtap="hideModal">关闭</view>
+			</block>
+		</view>
+		<view class="padding-xs">
+			<radio-group class="block" bindchange="radioChange">
+				<view class="cu-list menu text-left">
+					<view class="cu-item bg-white baby-info" wx:for="{{baby_items}}" wx:key="index">
+						<image src="../images/baby-avatar.png" class="baby-avatar" binderror="loadError"></image>
+						<label class="flex justify-between align-center flex-sub">
+							<view class="flex-sub">{{item.name}}</view>
+							<radio class="round" value="{{item.id}}" checked="{{item.checked}}"></radio>
+						</label>
+					</view>
+				</view>
+			</radio-group>
+			<view style="font-size: 40px;">
+				<text class="cuIcon-add bg-white text-gray" bindtap="addBaby"></text>
+			</view>
+		</view>
 	</view>
 </view>

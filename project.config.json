@@ -66,8 +66,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/note/naping/naping",
-					"pathName": "pages/note/naping/naping",
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
 				}

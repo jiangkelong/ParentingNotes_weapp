@@ -1,0 +1,15 @@
+<view class="fullPage">
+	<view class="cu-timeline bg-gray">
+		<block wx:for="{{history_notes_after_group}}" wx:for-index="idx" wx:for-item="it" wx:key="idx">
+			<view class="cu-time">{{it.format_date}}</view>
+			<navigator class="cu-item text-{{note_item_color[item.category]}}" wx:for="{{it.subList}}" wx:key="index" hover-class='none' url="../../note/{{item.category}}/{{item.category}}">
+				<view class="content bg-{{note_item_color[item.category]}} shadow-blur">
+					<view class="bubble1 bg-{{note_item_color[item.category]}}">
+						<view class="title">14:22【{{note_item[item.category]}}】<text></text></view>
+					</view>
+				</view>
+			</navigator>
+		</block>
+		<view class="place-holder"></view>
+	</view>
+</view>

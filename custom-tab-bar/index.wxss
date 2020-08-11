@@ -1,7 +1,27 @@
 /* pages/custom-tab-bar/index.wxss */
 @import "../styles/colorui/main.wxss";
 @import "../styles/colorui/icon.wxss";
-
+.cu-bar.tabbar .action.add-action .baby-avatar {
+	position: absolute;
+	width: 70rpx;
+	z-index: 2;
+	height: 70rpx;
+	border-radius: 50%;
+	line-height: 70rpx;
+	font-size: 50rpx;
+	top: -35rpx;
+	left: 0;
+	right: 0;
+	margin: auto;
+	padding: 0;
+}
+.baby-info .baby-avatar {
+	width: 70rpx;
+	height: 70rpx;
+	border-radius: 50%;
+	margin: 0 5px 0 0;
+	padding: 0;
+}
 .bg-white {
   background-color: #ffffff;
   color: #666666;
@@ -24,7 +44,38 @@
 .text-gray {
   color: #aaaaaa;
 }
+.text-blue {
+  color: #0081ff;
+}
 
 .shadow[class*="-green"] {
   box-shadow: 6rpx 6rpx 8rpx rgba(48, 156, 63, 0.2);
 }
+.choose-modal .action{
+  font-size: 30rpx !important;
+  padding:0 30rpx !important;
+}
+.cu-list.menu>.cu-item:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 200%;
+  height: 200%;
+  border-bottom: 1rpx solid #ddd;
+  border-radius: inherit;
+  content: " ";
+  transform: scale(.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  
+  }
+  
+radio::before, checkbox::before {
+  color: #ffffff !important;
+  }
+  radio[checked] {
+    background-color: #39b54a !important;
+    color: #ffffff !important;
+  }
+  

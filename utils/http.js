@@ -37,7 +37,7 @@ class HTTP {
         data: data,
         method: method,
         header: {
-          'content-type': type == 'json' ? 'application/json' : 'application/x-www-form-urlencoded',
+          'content-type': 'application/json',
           'token': wx.getStorageSync('token') || ''
         },
         complete: res => {
@@ -58,17 +58,18 @@ class HTTP {
             }
           } else if (res.statusCode == 403) {
             //未登录，跳转登录页
-            wx.showToast({
-              title: '请登录……',
-              icon: 'none',
-              duration: 1500,
-              mask: true
+            wx.showModal({
+              title: '提示',
+              content: '请登录',
+              showCancel:false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: 'pages/login/login'
+                  })
+                }
+              }
             })
-            setTimeout(() => {
-              wx.navigateTo({
-                url: '/pages/login/login',
-              })
-            }, 1500);
           } else if (res.statusCode == 401) {
             //token过期，重新获取token，然后再次请求
             getNewToken().then(() => {
@@ -98,7 +99,7 @@ class HTTP {
           openid: wx.getStorageSync('openId'),
         },
         header: {
-          'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/json'
         },
         method: 'post',
         success: function (res) {
@@ -107,17 +108,18 @@ class HTTP {
             wx.setStorageSync('token', res.data.data.token);
             resolve(res)
           } else if (res.data.statusCode == 403) { //用户未登录
-            wx.showToast({
-              title: '请登录……',
-              icon: 'none',
-              duration: 1500,
-              mask: true
+            wx.showModal({
+              title: '提示',
+              content: '请登录',
+              showCancel:false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: 'pages/login/login'
+                  })
+                }
+              }
             })
-            setTimeout(() => {
-              wx.navigateTo({
-                url: '/pages/login/login',
-              })
-            }, 1500);
           }
         },
       })

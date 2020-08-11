@@ -2,13 +2,12 @@
 //获取应用实例
 const app = getApp()
 const util = require('../../../utils/util')
-const computedBehavior = require('miniprogram-computed')
 Page({
-  behaviors: [computedBehavior],
   /**
    * 页面的初始数据
    */
   data: {
+    name: app.globalData.name,
     note_item: app.globalData.note_item,
     note_item_color: app.globalData.note_item_color,
     history_notes: app.globalData.history_notes,
@@ -19,62 +18,59 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.babyWatch(this.watchBaby)
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.babyListWatch(this.watchBabyList1)
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 0
+        selected: 0,
+        default_baby: app.globalData.default_baby
       })
     }
   },
   onPullDownRefresh: function () {
     console.log('refresh')
-    // 显示标题栏进度条效果
-    wx.showNavigationBarLoading();
-    // 取消页面刷新动画
-    wx.stopPullDownRefresh();
     this.setData({
       name: 'Jiang'
     }, () => {
       setTimeout(() => {
-        // 取消标题栏进度条效果
-        wx.hideNavigationBarLoading();
-      }, 1000);
+        // 取消页面刷新动画
+        wx.stopPullDownRefresh();
+      }, 500);
     });
   },
-  /**
-   * 计算属性
-   */
-  computed: {
-    //将history_notes按日期分组
-    history_notes_after_group(data) {
-      // 注意： computed 函数中不能访问 this ，只有 data 对象可供访问
-      // 这个函数的返回值会被设置到 this.data.sum 字段中
-      let newArr = []
-      data.history_notes.forEach((item, i) => {
-        let index = -1;
-        let isExists = newArr.some((newItem, j) => {
-          if (item.date == newItem.date) {
-            index = j;
-            return true;
-          }
-        })
-        if (!isExists) {
-          newArr.push({
-            date: item.date,
-            format_date: util.goodDate(item.date),
-            subList: [item]
-          })
-        } else {
-          newArr[index].subList.push(item);
-        }
-      })
-      return newArr
-    },
+  watchBabyList1(list) {
+    console.log(1)
+    var arr=list.filter((item,index)=>{
+      return item.checked==true
+    })
+    app.globalData.default_baby=arr[0]
+    this.getTabBar().setData({
+      default_baby:arr[0]
+    })
   },
+  watchBaby: function (id) {
+    console.log('this.baby_id==' + id)
+  },
+  navigateTo: function (e) {
+    const url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: url
+    })
+  },
+  toMenu:function(){
+    wx.navigateTo({
+      url: '../../category/index'
+    })
+  },
+  toHistory:function(){
+    wx.navigateTo({
+      url: '../history/history'
+    })
+  }
 })

@@ -1,30 +1,40 @@
 // pages/custom-tab-bar/index.js
+var select_babyID = null
+const app = getApp()
+var that=null
 Component({
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+    },
+  },
   /**
    * 组件的初始数据
    */
   data: {
+    show: false,
     selected: 0,
-    list: [
-      {
+    list: [{
         "url": "/pages/index/index/index",
         "icon": "homefill",
-        "button":false,
+        "tabBar_page": true,
         "text": "今日"
       },
       {
         "url": "/pages/category/index",
         "icon": "add",
-        "button":true,
-        "text": "记录"
+        "tabBar_page": false,
+        "text": "选择宝宝"
       },
       {
         "url": "/pages/center/index/index",
         "icon": "my",
-        "button":false,
+        "tabBar_page": true,
         "text": "我的"
       }
-    ]
+    ],
+    baby_items: app.globalData.baby_list,
+    default_baby:{}
   },
 
   /**
@@ -34,11 +44,52 @@ Component({
     switchTab(e) {
       const data = e.currentTarget.dataset
       const url = data.path
-      console.log(data.index)
-      wx.switchTab({ url })
+      wx.switchTab({
+        url
+      })
       this.setData({
         selected: data.index,
       })
+    },
+    chooseBaby() {
+      this.setData({
+        baby_items: app.globalData.baby_list,
+        show: true
+      })
+    },
+    hideModal() {
+      this.setData({
+        show: false
+      })
+    },
+    chooseOk() {
+      wx.showLoading({
+        title: '切换中……',
+        mask: true
+      })
+      app.globalData.baby_id = select_babyID
+      var baby_list = app.globalData.baby_list
+      for (let i = 0, len = baby_list.length; i < len; ++i) {
+        baby_list[i].checked = baby_list[i].id === select_babyID
+      }
+      app.globalData.baby_list = baby_list
+      this.setData({
+        baby_items: baby_list,
+        show: false
+      })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 2000)
+    },
+    radioChange(e) {
+      console.log('radio发生change事件，携带value值为：', e.detail.value)
+      select_babyID = e.detail.value
+    },
+    loadError(error) {
+      console.log(error)
+    },
+    addBaby() {
+
     }
   }
 })

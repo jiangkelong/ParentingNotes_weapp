@@ -1,0 +1,12 @@
+.main{
+  text-align: center;
+}
+.main .logo{
+  height:400rpx
+}
+.main .title{
+  height:120rpx
+}
+.main .btn-group{
+  padding-top:50px ;
+}

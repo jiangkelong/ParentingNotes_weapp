@@ -1,0 +1,9 @@
+<view class="bg-gradual-red fullPage main">
+	<image class="logo" src="../../images/logo.png" mode="heightFix"></image>
+	<image class="title" src="../../images/app-name-1.png" mode="heightFix"></image>
+	<view class="cu-bar btn-group sub-btn">
+		<button class="cu-btn bg-green shadow-blur lg" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			<text class="cuIcon-weixin lg text-white"></text> 微信登录
+		</button>
+	</view>
+</view>
