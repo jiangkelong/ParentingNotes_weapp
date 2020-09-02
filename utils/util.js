@@ -7,6 +7,13 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':')
 }
+const formatDate = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  return [year, month, day].map(formatNumber).join('-')
+}
 
 const formatNumber = n => {
   n = n.toString()
@@ -40,5 +47,6 @@ const goodDate = date => {
 
 module.exports = {
   formatTime: formatTime,
+  formatDate: formatDate,
   goodDate: goodDate
 }

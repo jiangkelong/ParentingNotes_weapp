@@ -7,11 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: app.globalData.name,
     note_item: app.globalData.note_item,
     note_item_color: app.globalData.note_item_color,
-    history_notes: app.globalData.history_notes,
-    date: util.goodDate('2020-11-01')
+    history_notes: app.globalData.history_notes
   },
 
   /**
@@ -19,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     app.babyWatch(this.watchBaby)
+    
   },
   /**
    * 生命周期函数--监听页面显示
@@ -34,7 +33,6 @@ Page({
     }
   },
   onPullDownRefresh: function () {
-    console.log('refresh')
     this.setData({
       name: 'Jiang'
     }, () => {

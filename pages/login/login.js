@@ -34,14 +34,30 @@ Page({
         // 发送 send_data 到后台换取 openId,  token
         app.api.wxLogin(send_data)
           .then(r => {
-            wx.setStorageSync({
+            console.log(r)
+            wx.setStorageSync('token', r.token)
+            wx.setStorage({
               key: "openId",
               data: r.openId
             })
-            wx.setStorageSync({
-              key: "token",
-              data: r.token
-            })
+            //获取宝宝列表
+            app.api.getBabyList()
+              .then(r=>{
+                if(!r||r.length==0){
+                  wx.showModal({
+                    title: '提示',
+                    content: '请添加宝宝',
+                    showCancel:false,
+                    success(res) {
+                      if (res.confirm) {
+                        wx.navigateTo({
+                          url: '../baby/edit/edit'
+                        })
+                      }
+                    }
+                  })
+                }
+              })
           })
       }
     })

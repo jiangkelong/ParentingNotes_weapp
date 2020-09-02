@@ -1,0 +1,63 @@
+<!--pages/baby/edit/edit.wxml-->
+<view class="cu-card case">
+	<view class="cu-item">
+		<form>
+			<view class="cu-bar bg-white">
+				<view class="action">
+					头像
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="grid col-4 grid-square flex-sub">
+					<view wx:if="{{avatar_url}}" class="bg-img" bindtap="ChooseImage" data-url="{{avatar_url}}">
+						<image src='{{avatar_url}}' mode='aspectFill'></image>
+					</view>
+					<view wx:else class="solids" bindtap="ChooseImage">
+						<text class="cuIcon-cameraadd"></text>
+					</view>
+				</view>
+			</view>
+			<view class="cu-form-group margin-top">
+				<view class="title">名称</view>
+				<input placeholder="请输入宝宝名字"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">性别</view>
+				<picker bindchange="GenderChange" value="{{gender_index}}" range="{{gender_list}}">
+					<view class="picker">
+						{{gender_list[gender_index]}}
+					</view>
+				</picker>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">出生日期</view>
+				<picker mode="date" value="{{birthday}}" bindchange="DateChange">
+					<view class="picker">
+						{{birthday}}
+					</view>
+				</picker>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">出生体重</view>
+				<input placeholder="请输入宝宝出生体重"></input>
+				<view>kg</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">出生体长</view>
+				<input placeholder="请输入宝宝出生体长"></input>
+				<view>cm</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">我的身份</view>
+				<picker bindchange="IdentityChange" value="{{identity_index}}" range="{{identity_list}}">
+					<view class="picker">
+						{{identity_list[identity_index]}}
+					</view>
+				</picker>
+			</view>
+		</form>
+	</view>
+</view>
+<view class="cu-bar btn-group sub-btn">
+	<button class="cu-btn bg-green shadow-blur lg">提 交</button>
+</view>

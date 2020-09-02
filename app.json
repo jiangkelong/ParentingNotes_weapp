@@ -17,7 +17,9 @@
     "pages/note/lichengbei/lichengbei",
     "pages/note/biji/biji",
     "pages/login/login",
-    "pages/index/history/history"
+    "pages/index/history/history",
+    "pages/baby/index/index",
+    "pages/baby/edit/edit"
   ],
   "tabBar": {
     "custom": true,

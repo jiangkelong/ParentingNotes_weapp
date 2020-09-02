@@ -10,5 +10,11 @@ class api extends HTTP{
       data:data
     })
   }
+  //获取宝宝列表
+  getBabyList(){
+    return this.request({
+      url:'Src/getBabyList'
+    })
+  }
 }
 export {api}

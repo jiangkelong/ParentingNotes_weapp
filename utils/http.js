@@ -23,14 +23,14 @@ class HTTP {
   request({
     url,
     data = {},
-    //callback = '',
+    callback = '',
     method = 'get'
   }) {
     wx.showLoading({
       title: '加载中',
       mask: true
     })
-    let timeStart = Date.now();
+    //let timeStart = Date.now();
     return new Promise((resolve, reject) => {
       wx.request({
         url: baseUrl + url,
@@ -38,16 +38,16 @@ class HTTP {
         method: method,
         header: {
           'content-type': 'application/json',
-          'token': wx.getStorageSync('token') || ''
+          'Authorization': "Bearer " + wx.getStorageSync('token') || ''
         },
         complete: res => {
           wx.hideLoading();
-          console.log(`耗时${Date.now() - timeStart}`);
+          //console.log(`耗时${Date.now() - timeStart}`);
           //重新请求完token，再次执行后的请求在这里拦截
-          // if (callback) {
-          //   callback(res.data.data);
-          //   return
-          // }
+          if (callback) {
+            callback(res.data.data);
+            return
+          }
           if (res.statusCode == 200) {
             if (res.data.statusCode == 200) {
               resolve(res.data.data)
@@ -72,11 +72,11 @@ class HTTP {
             })
           } else if (res.statusCode == 401) {
             //token过期，重新获取token，然后再次请求
-            getNewToken().then(() => {
-              request({
+            this.getNewToken().then(() => {
+              this.request({
                 url,
                 data,
-                //callback: resolve,
+                callback: resolve,
                 method
               })
             })
@@ -92,20 +92,21 @@ class HTTP {
 
   //获取新token
   getNewToken() {
+    console.log("刷新token……")
     return new Promise((resolve, reject) => {
       wx.request({
-        url: baseUrl + 'Auth/GetToken',
+        url: baseUrl + 'Auth/RefreshToken',
         data: {
           openid: wx.getStorageSync('openId'),
         },
         header: {
           'content-type': 'application/json'
         },
-        method: 'post',
+        method: 'get',
         success: function (res) {
           console.log(res);
           if (res.data.statusCode == 200) {
-            wx.setStorageSync('token', res.data.data.token);
+            wx.setStorageSync('token', res.data.data);
             resolve(res)
           } else if (res.data.statusCode == 403) { //用户未登录
             wx.showModal({

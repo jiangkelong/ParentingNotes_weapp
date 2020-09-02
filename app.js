@@ -5,35 +5,30 @@ import {
 App({
   api: new api(),
   onLaunch: function () {
-    setTimeout(() => {
-      this.globalData.baby_list = [{
-        id: '1',
-        name: '柒柒',
-        checked: true
-      },
-      {
-        id: '2',
-        name: '小九'
+
+    // setTimeout(() => {
+    //   this.globalData.baby_list = [{
+    //       id: '1',
+    //       name: '柒柒',
+    //       checked: true
+    //     },
+    //     {
+    //       id: '2',
+    //       name: '小九'
+    //     }
+    //   ]
+    // }, 800);
+    wx.getStorage({
+      key: 'token',
+      success: (res) => {
+        //如果有token缓存，就获取数据
+        //获取宝宝列表
+        this.api.getBabyList()
+          .then(r => {
+
+          })
       }
-    ]
-    }, 800);
-    // wx.getStorage({
-    //   key: 'token',
-    //   success: (res) => {
-    //     //如果有token缓存，就获取数据
-    //     //获取宝宝列表
-    //     this.globalData.baby_list = [{
-    //         id: '1',
-    //         name: '柒柒',
-    //         checked: true
-    //       },
-    //       {
-    //         id: '2',
-    //         name: '小九'
-    //       }
-    //     ]
-    //   }
-    // })
+    })
   },
   // 监听宝宝切换
   babyWatch: function (callback) {
@@ -70,7 +65,7 @@ App({
   },
   globalData: {
     baby_list: [],
-    default_baby:{},
+    default_baby: {},
     baby_id: 1,
     note_item: {
       muru: '亲喂',

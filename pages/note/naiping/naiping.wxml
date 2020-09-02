@@ -32,7 +32,7 @@
 		</view>
 		<view class="cus-field">
 			<view class="cus-form-group">
-				<input placeholder="输入摄入量"></input>
+				<input type="digit" placeholder="输入摄入量"></input>
 				<text class="unit">ml</text>
 			</view>
 		</view>

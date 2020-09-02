@@ -3,7 +3,8 @@
 		<!-- <button wx:if="{{!item.tabBar_page}}" class="cu-btn cuIcon-{{item.icon}} bg-green shadow"></button> -->
 		<block wx:if="{{!item.tabBar_page}}">
 			<image src="../images/baby-avatar.png" class="baby-avatar" binderror="loadError"></image>
-			{{default_baby.name}}
+			<text wx:if="{{default_baby.name}}">{{default_baby.name}}</text>
+			<text wx:else>请添加宝宝</text>
 		</block>
 		<block wx:else>
 			<view class="cuIcon-{{item.icon}}"></view>

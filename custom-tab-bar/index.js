@@ -1,7 +1,6 @@
 // pages/custom-tab-bar/index.js
 var select_babyID = null
 const app = getApp()
-var that=null
 Component({
   lifetimes: {
     attached: function() {
@@ -41,6 +40,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //跳转
     switchTab(e) {
       const data = e.currentTarget.dataset
       const url = data.path
@@ -51,17 +51,20 @@ Component({
         selected: data.index,
       })
     },
+    //弹出宝宝选择框
     chooseBaby() {
       this.setData({
         baby_items: app.globalData.baby_list,
         show: true
       })
     },
+    //隐藏宝宝选择框
     hideModal() {
       this.setData({
         show: false
       })
     },
+    //确认选择
     chooseOk() {
       wx.showLoading({
         title: '切换中……',
@@ -81,15 +84,16 @@ Component({
         wx.hideLoading()
       }, 2000)
     },
+    //单选变更
     radioChange(e) {
       console.log('radio发生change事件，携带value值为：', e.detail.value)
       select_babyID = e.detail.value
     },
-    loadError(error) {
-      console.log(error)
-    },
     addBaby() {
-
+      this.hideModal()
+      wx.navigateTo({
+        url: '/pages/baby/edit/edit'
+      })
     }
   }
 })
