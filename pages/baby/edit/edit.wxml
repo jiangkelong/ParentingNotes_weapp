@@ -19,7 +19,7 @@
 			</view>
 			<view class="cu-form-group margin-top">
 				<view class="title">名称</view>
-				<input placeholder="请输入宝宝名字"></input>
+				<input placeholder="请输入宝宝名字" data-item="name" bindinput="bindInputChange"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">性别</view>
@@ -31,20 +31,20 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">出生日期</view>
-				<picker mode="date" value="{{birthday}}" bindchange="DateChange">
+				<picker mode="date" value="{{baby_data.birthday}}" bindchange="DateChange">
 					<view class="picker">
-						{{birthday}}
+						{{baby_data.birthday}}
 					</view>
 				</picker>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">出生体重</view>
-				<input placeholder="请输入宝宝出生体重"></input>
+				<input type="digit" placeholder="请输入宝宝出生体重" data-item="birth_weight" bindinput="bindInputChange"></input>
 				<view>kg</view>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">出生体长</view>
-				<input placeholder="请输入宝宝出生体长"></input>
+				<input type="digit" placeholder="请输入宝宝出生体长" data-item="birth_height" bindinput="bindInputChange"></input>
 				<view>cm</view>
 			</view>
 			<view class="cu-form-group">
@@ -59,5 +59,7 @@
 	</view>
 </view>
 <view class="cu-bar btn-group sub-btn">
-	<button class="cu-btn bg-green shadow-blur lg">提 交</button>
+	<button wx:if="{{action=='add'}}" class="cu-btn bg-green shadow-blur lg" bindtap="add">提 交</button>
+	<button wx:if="{{action=='modify'}}" class="cu-btn bg-green shadow-blur lg" bindtap="modify">提 交</button>
+	<button wx:if="{{action=='info'}}" class="cu-btn bg-green shadow-blur lg">提 交</button>
 </view>

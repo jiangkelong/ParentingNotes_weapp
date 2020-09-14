@@ -1,9 +1,12 @@
 // pages/custom-tab-bar/index.js
+import {
+  config
+} from '../utils/config'
 var select_babyID = null
 const app = getApp()
 Component({
   lifetimes: {
-    attached: function() {
+    attached: function () {
       // 在组件实例进入页面节点树时执行
     },
   },
@@ -11,6 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    serve_host:config.serve_host,
     show: false,
     selected: 0,
     list: [{
@@ -33,7 +37,7 @@ Component({
       }
     ],
     baby_items: app.globalData.baby_list,
-    default_baby:{}
+    default_baby: {}
   },
 
   /**
@@ -70,10 +74,20 @@ Component({
         title: '切换中……',
         mask: true
       })
-      app.globalData.baby_id = select_babyID
+      app.globalData.default_baby_id = select_babyID
+      wx.setStorage({
+        data: select_babyID,
+        key: 'default_baby_id',
+      })
       var baby_list = app.globalData.baby_list
       for (let i = 0, len = baby_list.length; i < len; ++i) {
-        baby_list[i].checked = baby_list[i].id === select_babyID
+        if (baby_list[i].id == select_babyID) {
+          baby_list[i].checked = true
+          app.globalData.default_baby = baby_list[i]
+        }
+        else{
+          baby_list[i].checked = false
+        }
       }
       app.globalData.baby_list = baby_list
       this.setData({

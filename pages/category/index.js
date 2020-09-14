@@ -89,7 +89,22 @@ Page({
           }
         }
       })
-    } else {
+    }
+    else if(!app.globalData.default_baby_id){
+      wx.showModal({
+        title: '提示',
+        content: '请添加宝宝',
+        showCancel:false,
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../baby/edit/edit'
+            })
+          }
+        }
+      })
+    }
+    else {
       const url = e.currentTarget.dataset.url
       wx.navigateTo({
         url: url

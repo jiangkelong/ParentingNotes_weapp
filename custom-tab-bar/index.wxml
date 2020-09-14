@@ -2,7 +2,7 @@
 	<view wx:for="{{list}}" wx:key="index" data-path="{{item.url}}" bindtap="{{item.tabBar_page?'switchTab':'chooseBaby'}}" data-index="{{index}}" class="action text-{{selected === index?'green':'gray'}} {{!item.tabBar_page?'add-action':''}}">
 		<!-- <button wx:if="{{!item.tabBar_page}}" class="cu-btn cuIcon-{{item.icon}} bg-green shadow"></button> -->
 		<block wx:if="{{!item.tabBar_page}}">
-			<image src="../images/baby-avatar.png" class="baby-avatar" binderror="loadError"></image>
+			<image src="{{default_baby.avatar_url?serve_host + default_baby.avatar_url:''}}" class="baby-avatar"></image>
 			<text wx:if="{{default_baby.name}}">{{default_baby.name}}</text>
 			<text wx:else>请添加宝宝</text>
 		</block>
@@ -30,7 +30,7 @@
 			<radio-group class="block" bindchange="radioChange">
 				<view class="cu-list menu text-left">
 					<view class="cu-item bg-white baby-info" wx:for="{{baby_items}}" wx:key="index">
-						<image src="../images/baby-avatar.png" class="baby-avatar" binderror="loadError"></image>
+						<image src="{{serve_host + item.avatar_url}}" class="baby-avatar"></image>
 						<label class="flex justify-between align-center flex-sub">
 							<view class="flex-sub">{{item.name}}</view>
 							<radio class="round" value="{{item.id}}" checked="{{item.checked}}"></radio>

@@ -68,7 +68,7 @@
 					"id": 0,
 					"name": "pages/baby/edit/edit",
 					"pathName": "pages/baby/edit/edit",
-					"query": "",
+					"query": "do=add",
 					"scene": null
 				}
 			]

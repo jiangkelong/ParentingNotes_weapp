@@ -37,12 +37,13 @@ Page({
       }
   },
   watchBabyList2(list) {
-    var arr=list.filter((item,index)=>{
-      return item.checked==true
-    })
-    app.globalData.default_baby=arr[0]
+    console.log('个人页：监控到宝宝列表改变')
+    // var arr=list.filter((item,index)=>{
+    //   return item.checked==true
+    // })
+    // app.globalData.default_baby=arr[0]
     this.getTabBar().setData({
-      default_baby:arr[0]
+      default_baby:app.globalData.default_baby
     })
   },
 })

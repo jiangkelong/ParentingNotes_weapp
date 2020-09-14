@@ -1,3 +1,6 @@
+import {
+  config
+} from 'config.js'
 /** 
  * 后台返回的格式：
  * res_data={
@@ -7,8 +10,6 @@
  *  data //成功返回的数据
  * }
  * */
-//请求基本url
-const baseUrl = "http://localhost:64089/api/";
 //定义错误码
 const tips = {
   //10086:表示显示后端返回的错误信息message
@@ -33,7 +34,7 @@ class HTTP {
     //let timeStart = Date.now();
     return new Promise((resolve, reject) => {
       wx.request({
-        url: baseUrl + url,
+        url: config.api_base_url + url,
         data: data,
         method: method,
         header: {
@@ -95,7 +96,7 @@ class HTTP {
     console.log("刷新token……")
     return new Promise((resolve, reject) => {
       wx.request({
-        url: baseUrl + 'Auth/RefreshToken',
+        url: config.api_base_url + 'Auth/RefreshToken',
         data: {
           openid: wx.getStorageSync('openId'),
         },
